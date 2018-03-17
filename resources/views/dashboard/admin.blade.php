@@ -1,5 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.temp')
 
+@section('title')
+Dashboard Admin
+@endsection
 @section('content')
 <div class="container">
     <div class="row">
@@ -22,7 +25,7 @@
 @endsection
 
 @section('scripts')
-    <script src="js/Chart.min.js"></script>
+    <script src="{{ asset('js/Chart.min.js') }}"></script>
     <script>
         var data = {
             labels: {!! json_encode($authors) !!},

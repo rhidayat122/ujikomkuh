@@ -21,7 +21,7 @@ class MotorController extends Controller
      */
     public function index(Request $request, Builder $htmlBuilder)
     {
-         $motors = Motor::All();
+         $motors = Motor::paginate(6);
         return view('motors.index')->with(compact('motors'));
     }
 
@@ -166,7 +166,7 @@ class MotorController extends Controller
 
         if (!$motor->delete()) return redirect()->back();
 
-        // Handle hapus buku via Ajax
+        // Handle hapus motor via Ajax
         if ($request->ajax()) return response()->json(['id' => $id]);
         
         // Hapus cover lama jika ada
@@ -187,5 +187,38 @@ class MotorController extends Controller
         ]);
 
         return redirect()->route('motors.index');
+    }
+
+    public function filter(Request $request)
+    {
+        
+        if($request->jenis == 'all'){
+            if($request->merk == 'all'){
+                $filter = Motor::paginate(6);
+                $jenis = "Semua";
+                $merk = "Semua";
+                $count= $filter->count();
+            }else{
+                $filter = Motor::where('id_merk',$request->merk)->paginate(6);
+                $jenis= "Semua";
+                $merk=$filter->first()->merk->merk;
+                $count= $filter->count();
+            }
+        }else{
+            if($request->merk == 'all'){
+                $filter = Motor::where('id_kategori',$request->jenis)->paginate(6);
+                $jenis=$filter->first()->kategori->jenis;
+                $merk = "Semua";
+                $count= $filter->count();
+            }else{
+                $filter = Motor::where('id_kategori',$request->jenis)->where('id_merk',$request->merk)->paginate(6);
+                $jenis=$filter->first()->kategori->jenis;
+                $merk=$filter->first()->merk->merk;
+                $count= $filter->count();
+            }
+        }
+      
+         return view('motors.index')->with(compact('filter', 'jenis', 'merk', 'count'));
+       
     }
 }

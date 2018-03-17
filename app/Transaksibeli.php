@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Transaksi_Beli extends Model
+class Transaksibeli extends Model
 {
     protected $fillable = ['motorjual_id','penjual_id','tgl','total_harga'];
 

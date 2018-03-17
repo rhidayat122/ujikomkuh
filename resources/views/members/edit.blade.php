@@ -1,9 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.temp')
 
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+        <div class="card">
+                <div class="card-block">
             <ul class="breadcrumb">
                 <li><a href="{{ url('/home') }}">Dashboard</a></li>
                 <li><a href="{{ url('/admin/members') }}">Member</a></li>
@@ -19,6 +21,8 @@
                     
                     @include('members._form')
                     {!! Form::close() !!}
+                </div>
+                </div>
                 </div>
             </div>
         </div>

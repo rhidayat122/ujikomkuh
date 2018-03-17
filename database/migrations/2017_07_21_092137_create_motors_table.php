@@ -15,14 +15,20 @@ class CreateMotorsTable extends Migration
     {
         Schema::create('motors', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('merk_motor');
+            $table->integer('id_merk')->unsigned();
+            $table->integer('id_kategori')->unsigned();
+            $table->string('nama_motor');
             $table->integer('tahun_keluar');
             $table->string('no_stnk');
+            $table->string('mesin');
             $table->string('harga_beli');
             $table->string('harga_jual');
             $table->string('warna');
             $table->string('gambar')->nullable();
             $table->timestamps();
+
+             $table->foreign('id_merk')->references('id')->on('merks')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_kategori')->references('id')->on('kategoris')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

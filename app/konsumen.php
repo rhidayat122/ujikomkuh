@@ -11,11 +11,11 @@ class Konsumen extends Model
     public function transaksi_jual()
     {
     	
-    	return $this->hasMany('App\Transaksi_jual');
+    	return $this->hasMany('App\Transaksijual');
     }
 
     public function transaksi_beli()
     {
-    	return $this->hasMany('App\Transaksi_beli');
+    	return $this->hasMany('App\Transaksibeli');
     }
 }

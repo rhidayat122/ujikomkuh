@@ -13,7 +13,7 @@ class CreateTransaksiJualsTable extends Migration
      */
     public function up()
     {
-        Schema::create('transaksi_juals', function (Blueprint $table) {
+        Schema::create('Transaksijuals', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('motorbeli_id')->unsigned();
             $table->integer('pembeli_id')->unsigned();
@@ -34,6 +34,6 @@ class CreateTransaksiJualsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaksi_juals');
+        Schema::dropIfExists('Transaksijuals');
     }
 }

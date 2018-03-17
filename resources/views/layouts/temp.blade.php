@@ -17,6 +17,13 @@
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="{{asset('css/colors/blue.css')}}" id="theme" rel="stylesheet">
+     <!-- DataTable CSS -->
+    <link href="{{ asset('css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Selectize -->
+    <link href="{{ asset('css/selectize.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/selectize.bootstrap3.css') }}" rel="stylehsset">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -126,6 +133,20 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
+                    @role('admin')
+                        <li>
+                            <a href={{ url('/home') }} class="waves-effect"><i class="fa fa-clock-o m-r-10" aria-hidden="true"></i>Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/admin/members') }}" class="waves-effect"><i class="fa fa-user-circle  m-r-10" aria-hidden="true"></i>Karyawan</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/karyawan/transaksibelis') }}" class="waves-effect"><i class="fa fa-handshake-o   m-r-10" aria-hidden="true"></i>Transaksi Beli</a>
+                        </li>
+                       
+                      
+
+                @endrole
                 @role('member')
                         <li>
                             <a href={{ url('/home') }} class="waves-effect"><i class="fa fa-clock-o m-r-10" aria-hidden="true"></i>Dashboard</a>
@@ -133,10 +154,13 @@
                         <li>
                             <a href="{{ url('/karyawan/motors') }}" class="waves-effect"><i class="fa fa-motorcycle  m-r-10" aria-hidden="true"></i>Motor</a>
                         </li>
-                        <li>
-                            <a href="{{ url('/karyawan/transaksibelis') }}" class="waves-effect"><i class="fa fa-motorcycle  m-r-10" aria-hidden="true"></i>Transaksi Beli</a>
+                         <li>
+                            <a href="{{ url('/karyawan/kategoris') }}" class="waves-effect"><i class="fa fa-motorcycle  m-r-10" aria-hidden="true"></i>Kategori</a>
                         </li>
-                      
+                        <li>
+                            <a href="{{ url('/karyawan/merks') }}" class="waves-effect"><i class="fa fa-motorcycle  m-r-10" aria-hidden="true"></i>Merk</a>
+                        </li>
+                       
 
                 @endrole
                        
@@ -191,11 +215,13 @@
                         </div>
                     </div> -->
                     <!-- Column -->
-               <!--  </div> -->
-               @yield('content')
+               <!--  </div> --> 
+                @include('layouts._flash')
+
+                @yield('content')
                 <!-- Row -->
                
-                
+
                
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
@@ -249,6 +275,14 @@
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="{{asset('/assets/plugins/styleswitcher/jQuery.style.switcher.js')}}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    
+    <!-- DataTable JS -->
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
+     <script src="{{ asset('js/selectize.min.js') }}"></script>
+                    @yield('scripts')
 </body>
 
 </html>

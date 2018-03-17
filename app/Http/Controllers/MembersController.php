@@ -65,7 +65,7 @@ class MembersController extends Controller
      */
     public function store(StoreMemberRequest $request)
     {
-        $password = str_random(6);
+        $password = $request->password;
         $data = $request->all();
         $data['password'] = bcrypt($password);
         // bypass verifikasi
@@ -77,10 +77,7 @@ class MembersController extends Controller
         $memberRole = Role::where('name', 'member')->first();
         $member->attachRole($memberRole);
 
-        // Kirim email
-        Mail::send('auth.emails.invite', compact('member', 'password'), function($m) use ($member) {
-            $m->to($member->email, $member->name)->subject('Anda telah didaftarkan di Larapus!');
-        });
+        
 
         Session::flash("flash_notification", [
             "level"     =>  "success",

@@ -1,7 +1,7 @@
 @extends('layouts.temp')
 
 @section('title')
-List Motor
+Transaksi Beli zl
 @endsection
 @section('content')
 <div class="row">
@@ -49,7 +49,7 @@ List Motor
                     </div>
 
                    <br>
-                <span class="pull-right"><a href="" class="btn btn-danger">Transaksi</a></span> <span class="pull-left"><a href="{{ route('motors.edit', $data->id) }}"  class="btn btn-success">Ubah</a></span> <!-- <span <a href="{{ route('motors.destroy', $data->id) }}"  class="btn btn-warning">Hapus</a></span>
+                <span class="pull-right"><a href="{{ route('transaksibelis.create', $data->id) }}" class="btn btn-danger">Transaksi</a></span> <span class="pull-left"><a href="{{ route('motors.edit', $data->id) }}"  class="btn btn-success">Ubah</a></span> <!-- <span <a href="{{ route('motors.destroy', $data->id) }}"  class="btn btn-warning">Hapus</a></span>
  -->            
             </div>
         </div>

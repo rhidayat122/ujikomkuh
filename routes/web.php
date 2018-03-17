@@ -9,15 +9,18 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/Route::get('/', function () {
-    return view('auth.login');
-});
+*/ Auth::routes();
+
+Route::get('/', 'GuestController@index');
+Route::get('filter/motorguest', 'GuestController@filter');
 Route::get('/testing', function () {
     return view('layouts.temp');
 });
 Route::group(['prefix' => 'karyawan', 'middleware' => ['auth', 'role:member']], function() {
     Route::resource('motors', 'MotorController');
     Route::resource('transaksibelis', 'TransaksiBeliController');
+    Route::resource('kategoris', 'KategoriController');
+    Route::resource('merks', 'MerkController');
 });
 Auth::routes();
 
@@ -76,3 +79,5 @@ Route::get('settings/profile/edit', 'SettingsController@editProfile');
 Route::post('settings/profile', 'SettingsController@updateProfile');
 Route::get('settings/password', 'SettingsController@editPassword');
 Route::post('settings/password', 'SettingsController@updatePassword');
+
+Route::get('filter/motor', 'MotorController@filter');

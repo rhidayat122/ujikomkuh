@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Motor;
+use App\Transaksibeli;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
@@ -23,7 +23,7 @@ class TransaksiBeliController extends Controller
      */
     public function index()
     {
-      $motors = Motor::All();
+      $motors = Transaksibeli::All();
         return view('transaksibelis.index')->with(compact('motors'));
     }
 
@@ -34,7 +34,7 @@ class TransaksiBeliController extends Controller
      */
     public function create()
     {
-        //
+        return view('transaksibelis.create');
     }
 
     /**
